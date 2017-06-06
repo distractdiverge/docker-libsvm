@@ -1,0 +1,8 @@
+FROM alpine:latest
+
+RUN mkdir /usr/src/libsvm
+WORKDIR /usr/src/libsvm
+
+COPY ./src /usr/src/libsvm
+
+CMD ["make"]
