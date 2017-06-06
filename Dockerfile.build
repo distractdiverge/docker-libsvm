@@ -1,8 +1,14 @@
 FROM alpine:latest
 
-RUN mkdir /usr/src/libsvm
+# Build Tools
+RUN apk add --update alpine-sdk
+
+# Build Location
+RUN mkdir -p /usr/src/libsvm
 WORKDIR /usr/src/libsvm
 
+# Get source
 COPY ./src /usr/src/libsvm
 
-CMD ["make"]
+# Build
+RUN make

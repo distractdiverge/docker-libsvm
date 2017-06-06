@@ -12,7 +12,9 @@ docker create --name build-cont build-img
 
 ## Running the build of libSVM
 ```bash
-docker cp build-cont:/usr/local/gaia/target/mgs.war ./target/mgs.war
+docker cp build-cont:/usr/src/libsvm/svm-train ./target/svm-train
+docker cp build-cont:/usr/src/libsvm/svm-scale ./target/svm-scale
+docker cp build-cont:/usr/src/libsvm/svm-predict ./target/svm-predict
 ```
 
 ## Building the final container with artifacts
