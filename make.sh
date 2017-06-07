@@ -1,5 +1,8 @@
 #!/bin/sh
 
+REPOSITORY=alexlapinski
+CONTAINER=libsvm
+
 #
 # Build Scripts for the libsvm binaries
 #  1. Build the docker build container
@@ -8,11 +11,13 @@
 #  4. Create final docker image with binaries
 #
 
-docker build -t libsvm.build -f Dockerfile.build .
-docker create --name libsvm.target libsvm.build
+docker build -t $REPOSITORY/$CONTAINER.build -f Dockerfile.build .
+docker create --name $CONTAINER.target $REPOSITORY/$CONTAINER.build
 
 mkdir ./target/
 
-docker cp libsvm.target:/usr/src/libsvm/svm-predict ./target/
-docker cp libsvm.target:/usr/src/libsvm/svm-scale ./target/
-docker cp libsvm.target:/usr/src/libsvm/svm-train ./target/
+docker cp $CONTAINER.target:/usr/src/libsvm/svm-predict ./target/
+docker cp $CONTAINER.target:/usr/src/libsvm/svm-scale ./target/
+docker cp $CONTAINER.target:/usr/src/libsvm/svm-train ./target/
+
+docker build -t $REPOSITORY/$CONTAINER .
