@@ -24,11 +24,5 @@ docker cp $CONTAINER.target:/usr/src/libsvm/svm-predict ./target/
 docker cp $CONTAINER.target:/usr/src/libsvm/svm-scale ./target/
 docker cp $CONTAINER.target:/usr/src/libsvm/svm-train ./target/
 
-echo "Removing Build Container: '$CONTAINER.target'"
-docker rm $CONTAINER.target
-
-echo "Removing Build Image: '$REPOSITORY/$CONTAINER.build'"
-docker rmi $REPOSITORY/$CONTAINER.build
-
 echo "Creating final image: '$REPOSITORY/$CONTAINER'"
 docker build -t $REPOSITORY/$CONTAINER .
